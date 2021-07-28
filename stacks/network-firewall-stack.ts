@@ -64,7 +64,7 @@ export class FirewallStack extends Stack {
       type: 'STATEFUL',
       ruleGroup: {
         ruleVariables: {
-          ipSets: { LAN: { definition: ['10.0.0.0/8'] } },
+          ipSets: { HOME_NET: { definition: ['10.0.0.0/8'] } },
         },
         rulesSource: {
           rulesSourceList: {
