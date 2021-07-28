@@ -1,8 +1,8 @@
 import { Construct } from 'constructs';
 import { Stack, StackProps, aws_ec2 as ec2, aws_logs as logs } from 'aws-cdk-lib';
 
-import { InspectedCloudConsumerVpc, StandardCloudConsumerVpc } from './constructs/cloud_consumer';
-import { TestInstance } from './constructs/test_instance';
+import { InspectedCloudConsumerVpc, StandardCloudConsumerVpc } from '../constructs/cloud_consumer';
+import { TestInstance } from '../constructs/test_instance';
 
 interface CloudConsumerStackProps extends StackProps {
   tgw: ec2.CfnTransitGateway;

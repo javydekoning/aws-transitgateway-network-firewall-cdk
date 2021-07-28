@@ -1,9 +1,9 @@
 import { App, Environment } from 'aws-cdk-lib';
 
-import { EgressVpcStack } from './egress-vpc-stack';
-import { FirewallStack } from './network-firewall-stack';
-import { LoggingStack } from './log-stack';
-import { CloudConsumersStack } from './inspected-cloud-consumers';
+import { EgressVpcStack } from './stacks/egress-vpc-stack';
+import { FirewallStack } from './stacks/network-firewall-stack';
+import { LoggingStack } from './stacks/log-stack';
+import { CloudConsumersStack } from './stacks/inspected-cloud-consumers';
 
 import { TgwStack } from './transit-gateway-stack';
 

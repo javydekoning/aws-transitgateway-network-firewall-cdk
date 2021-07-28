@@ -1,6 +1,5 @@
 import { Construct } from 'constructs';
 import {
-  CfnOutput,
   Fn,
   CustomResource,
   Stack,
@@ -12,7 +11,7 @@ import {
   aws_logs as logs,
 } from 'aws-cdk-lib';
 
-import { TgwAttachedVpc } from './constructs/cloud_consumer';
+import { TgwAttachedVpc } from '../constructs/cloud_consumer';
 
 interface FirewallStackProps extends StackProps {
   tgw: ec2.CfnTransitGateway;
@@ -128,7 +127,7 @@ export class FirewallStack extends Stack {
     // https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-networkfirewall/issues/15
     const mySortedEndpointsProvider = new cr.Provider(this, 'crProvider', {
       onEventHandler: new lambda.Function(this, 'crLambda', {
-        code: lambda.Code.fromAsset('lambda'),
+        code: lambda.Code.fromAsset('custom-resources'),
         handler: 'index.sorted_endpoints_handler',
         runtime: lambda.Runtime.PYTHON_3_8,
       }),
@@ -144,7 +143,7 @@ export class FirewallStack extends Stack {
     // Custom resource to set Appliance Mode on Inspection VPC attachment
     const myApplianceModeProvider = new cr.Provider(this, 'crApplianceModeProvider', {
       onEventHandler: new lambda.Function(this, 'applianceCrLambda', {
-        code: lambda.Code.fromAsset('lambda'),
+        code: lambda.Code.fromAsset('custom-resources'),
         handler: 'index.appliance_mode_handler',
         runtime: lambda.Runtime.PYTHON_3_8,
       }),
